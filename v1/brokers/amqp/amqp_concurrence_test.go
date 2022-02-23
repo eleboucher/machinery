@@ -2,9 +2,9 @@ package amqp
 
 import (
 	"fmt"
-	"github.com/RichardKnop/machinery/v1/brokers/iface"
-	"github.com/RichardKnop/machinery/v1/config"
-	"github.com/RichardKnop/machinery/v1/tasks"
+	"github.com/eleboucher/machinery/v1/brokers/iface"
+	"github.com/eleboucher/machinery/v1/config"
+	"github.com/eleboucher/machinery/v1/tasks"
 	"github.com/streadway/amqp"
 	"testing"
 	"time"
