@@ -225,8 +225,14 @@ func LockFactory(cnf *config.Config) (lockiface.Lock, error) {
 	if strings.HasPrefix(cnf.Lock, "eager") {
 		return eagerlock.New(), nil
 	}
-	if strings.HasPrefix(cnf.Lock, "redis://") {
-		parts := strings.Split(cnf.Lock, "redis://")
+	if strings.HasPrefix(cnf.Lock, "redis://") || strings.HasPrefix(cnf.Lock, "rediss://") {
+		var scheme string
+		if strings.HasPrefix(cnf.Lock, "redis://") {
+			scheme = "redis://"
+		} else {
+			scheme = "rediss://"
+		}
+		parts := strings.Split(cnf.Lock, scheme)
 		if len(parts) != 2 {
 			return nil, fmt.Errorf(
 				"Redis broker connection string should be in format redis://host:port, instead got %s",
